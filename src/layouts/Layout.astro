@@ -1,0 +1,42 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Azure Ventures - Pre-seed and seed-stage maritime venture capital firm backing founders at the very beginning of their journey" 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#0B0D10">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content={`${title} | Azure Ventures`}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/og-image.jpg">
+  
+  <title>{title} | Azure Ventures</title>
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+</head>
+<body>
+  <slot />
+</body>
+</html>

@@ -1,0 +1,205 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/ventures', label: 'Ventures' },
+  { href: '/what-we-do', label: 'What We Do' },
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact Us' },
+];
+---
+
+<header class="site-header" id="header">
+  <nav class="nav container">
+    <a href="/" class="logo">
+      <span class="logo-text">AZURE</span>
+      <span class="logo-sub">VENTURES</span>
+    </a>
+    
+    <button class="mobile-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <ul class="nav-menu">
+      {navItems.map(item => (
+        <li>
+          <a 
+            href={item.href}
+            class={currentPath === item.href ? 'active' : ''}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 2rem 0;
+    background: linear-gradient(to bottom, rgba(11, 13, 16, 0.9), transparent);
+    transition: all 0.3s ease;
+  }
+  
+  .site-header.scrolled {
+    padding: 1rem 0;
+    background: rgba(11, 13, 16, 0.95);
+    backdrop-filter: blur(10px);
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .scrolled .logo {
+    transform: scale(0.85);
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+  
+  .logo-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    opacity: 0.8;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  
+  .nav-menu a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu a:hover,
+  .nav-menu a.active {
+    color: white;
+  }
+  
+  .nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-azure);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-menu a:hover::after,
+  .nav-menu a.active::after {
+    width: 100%;
+  }
+  
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .mobile-toggle {
+      display: flex;
+    }
+    
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(11, 13, 16, 0.98);
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+      transform: translateY(-100vh);
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-menu.open {
+      transform: translateY(0);
+    }
+    
+    .mobile-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .mobile-toggle[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+</style>
+
+<script>
+  // Shrinking navigation on scroll
+  const header = document.getElementById('header');
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+  
+  // Mobile menu toggle
+  const toggle = document.querySelector('.mobile-toggle');
+  const menu = document.querySelector('.nav-menu');
+  
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', (!isOpen).toString());
+    menu?.classList.toggle('open');
+  });
+</script>
