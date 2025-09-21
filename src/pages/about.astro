@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About Us">
+  <Navigation transparent={true} />
+  
+  <main class="main-content">
+    <HeroSection 
+      text="Azure Ventures was founded by Gabbi Richardson and Greg Chiappini — entrepreneurs and investors with deep roots in the maritime sector."
+    />
+
+    <!-- Blue Box Section with founders story -->
+    <section class="intro-section">
+      <!-- content -->
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

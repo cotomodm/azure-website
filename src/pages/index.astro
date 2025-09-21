@@ -1,199 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
-import Hero from '../components/Hero.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Home">
-  <Navigation />
+  <Navigation transparent={true} />
   
-  <!-- First Hero Section -->
-  <Hero 
-    heading="While most keep their feet on the ground and some look to the skies, we fix our gaze on the sea — and how humanity interacts with it."
-    backgroundImage="/images/ocean-coral.jpg"
-  />
-  
-  <!-- Introduction Section -->
-  <section class="intro section">
-    <div class="container">
-      <h2>Azure Ventures is a pre-seed and seed-stage venture capital firm backing founders at the very beginning of their journey.</h2>
-      
-      <div class="intro__content">
-        <p>We invest in people before products — in long-term relationships built on belief, conviction, and trust.</p>
-        
-        <p>Our sole focus is the maritime sector. This is our domain — where we bring deep industry knowledge, founder experience, and a global network of experts and operators.</p>
-        
-        <p>We partner with startups set to transform the maritime world — businesses with the potential to shape the future of oceans, trade, climate, and global connectivity.</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Second Hero Section (scrolls into view) -->
-  <div class="hero-transition">
-    <Hero 
-      heading="We invest early — across the value chain and across the vast frontier of maritime technology"
-      backgroundImage="/images/ocean-tech.jpg"
+  <main class="main-content">
+    <HeroSection 
+      text="While most keep their feet on the ground and some look to the skies, we fix our gaze on the sea — and how humanity interacts with it."
+      backgroundImage="/images/ocean-hero.jpg"
     />
-  </div>
-  
-  <!-- What We Do Preview -->
-  <section class="what-we-do section">
-    <div class="container">
-      <h2>We focus where we know best: the maritime ecosystem.</h2>
-      <p class="lead">It's in our DNA.</p>
-      
-      <div class="points">
-        <div class="point">
-          <h3>Insider Knowledge</h3>
-          <p>Deep industry knowledge and founder experience</p>
-        </div>
-        <div class="point">
-          <h3>Global Network</h3>
-          <p>Access to sector thought leaders and operators</p>
-        </div>
-        <div class="point">
-          <h3>True Partnership</h3>
-          <p>Beyond capital — hands-on support and expertise</p>
+
+    <!-- Blue Box Section -->
+    <section class="intro-section">
+      <div class="container">
+        <div class="blue-box">
+          <h2>Azure Ventures is a pre-seed and seed-stage venture capital firm backing founders at the very beginning of their journey.</h2>
+          <!-- rest of content -->
         </div>
       </div>
-      
-      <a href="/what-we-do" class="cta-button">Learn More →</a>
-    </div>
-  </section>
-  
-  <!-- Contact Section -->
-  <section class="contact-cta section">
-    <div class="container text-center">
-      <h2>Ready to transform the maritime world?</h2>
-      <p>We're looking for founders at the very beginning of their journey.</p>
-      <a href="/contact" class="cta-button cta-button--primary">Get in Touch</a>
-    </div>
-  </section>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>
 
 <style>
-  /* Introduction Section */
-  .intro {
-    background: white;
-    color: var(--color-ocean-dark);
-  }
-  
-  .intro h2 {
-    font-size: var(--font-size-xl);
-    font-weight: 300;
-    margin-bottom: var(--space-xl);
-    max-width: 900px;
-  }
-  
-  .intro__content {
-    max-width: 800px;
-    font-size: var(--font-size-lg);
-    line-height: 1.7;
-  }
-  
-  .intro__content p {
-    margin-bottom: var(--space-lg);
-    opacity: 0.8;
-  }
-  
-  /* Hero Transition Effect */
-  .hero-transition {
+  /* Only page-specific styles here */
+  .intro-section {
     position: relative;
-    margin: var(--space-3xl) 0;
+    padding: 0 3rem 6rem;
   }
-  
-  /* What We Do Section */
-  .what-we-do {
-    background: var(--color-gray-100);
-    color: var(--color-ocean-dark);
-  }
-  
-  .what-we-do h2 {
-    margin-bottom: var(--space-sm);
-  }
-  
-  .lead {
-    font-size: var(--font-size-lg);
-    opacity: 0.8;
-    margin-bottom: var(--space-xl);
-  }
-  
-  .points {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-lg);
-    margin: var(--space-xl) 0;
-  }
-  
-  .point {
-    padding: var(--space-lg);
-    background: white;
+
+  .blue-box {
+    background: linear-gradient(
+      to bottom,
+      rgba(79, 195, 247, 0.85) 0%,
+      rgba(255, 235, 59, 0.85) 100%
+    );
+    backdrop-filter: blur(10px);
+    padding: 3rem;
     border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 500px;
   }
-  
-  .point:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  }
-  
-  .point h3 {
-    color: var(--color-azure);
-    margin-bottom: var(--space-sm);
-  }
-  
-  .point p {
-    opacity: 0.8;
-  }
-  
-  /* CTA Button */
-  .cta-button {
-    display: inline-block;
-    padding: var(--space-sm) var(--space-lg);
-    background: var(--color-azure);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    margin-top: var(--space-lg);
-  }
-  
-  .cta-button:hover {
-    background: var(--color-azure-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 168, 232, 0.3);
-  }
-  
-  .cta-button--primary {
-    background: white;
-    color: var(--color-azure);
-  }
-  
-  .cta-button--primary:hover {
-    background: var(--color-gray-100);
-  }
-  
-  /* Contact CTA */
-  .contact-cta {
-    background: var(--color-ocean-dark);
-    color: white;
-  }
-  
-  .contact-cta h2 {
-    margin-bottom: var(--space-md);
-  }
-  
-  .contact-cta p {
-    font-size: var(--font-size-lg);
-    opacity: 0.9;
-    margin-bottom: var(--space-xl);
-  }
-  
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    .points {
-      grid-template-columns: 1fr;
-    }
-  }
+  /* etc... */
 </style>
