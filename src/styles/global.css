@@ -1,99 +1,168 @@
-/* Reset and Base Styles */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* =============================================
+   CONSOLIDATED GLOBAL STYLES 
+   Single source of truth for all styles
+   ============================================= */
 
+/* 1. CSS Variables & Design Tokens */
 :root {
-  /* Colors */
-  --color-ocean-dark: #0B0D10;
-  --color-ocean-mid: #1a3a52;
-  --color-azure: #00a8e8;
-  --color-azure-light: #4fc3f7;
-  --color-white: #ffffff;
-  --color-gray-100: #f8f9fa;
-  --color-gray-900: #212529;
+  /* Colors - Updated Palette */
+  --color-ocean: #0B0D10;
+  --color-dark-gray: #4D4D4D;
+  --color-brown: #703F23;
+  --color-orange: #FCA811;
+  --color-yellow: #FFDE7F;
+  --color-teal-dark: #007A99;
+  --color-azure: #00A9F0;
+  --color-azure-light: #6DCFF6;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-gray-dark: #636467;
+  --color-gray-medium: #707070;
+  --color-gray-light: #93948D;
+  --color-gray-lighter: #90918A;
   
-  /* Typography - Fluid sizing */
-  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  --font-size-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
-  --font-size-xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
-  --font-size-2xl: clamp(2rem, 1.5rem + 2vw, 3rem);
-  --font-size-3xl: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
+  /* Typography - Updated to Noto Sans - All Fluid */
+  --font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-base: clamp(18px, 3vw, 22px); /* Body copy: 18px → 22px */
+  --font-size-lg: clamp(20px, 3.5vw, 26px); /* 20px → 26px */
+  --font-size-xl: clamp(24px, 4vw, 32px); /* 24px → 32px */
+  --font-size-2xl: clamp(28px, 5vw, 40px); /* 28px → 40px */
+  --font-size-3xl: clamp(32px, 6vw, 48px); /* 32px → 48px */
+  --font-size-4xl: clamp(40px, 8vw, 64px); /* 40px → 64px */
   
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  --space-2xl: 4rem;
-  --space-3xl: 6rem;
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5; /* 33px / 22px = 1.5 */
+  --line-height-relaxed: 1.6;
+  
+  /* Spacing - Single scale */
+  --space-xs: clamp(0.25rem, 1vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 2vw, 1rem);
+  --space-md: clamp(1rem, 3vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 4vw, 2rem);
+  --space-xl: clamp(2rem, 5vw, 3rem);
+  --space-2xl: clamp(3rem, 6vw, 4rem);
+  --space-3xl: clamp(4rem, 8vw, 6rem);
   
   /* Layout */
   --container-max: 1400px;
   --content-max: 1200px;
 }
 
+/* 2. Reset & Base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  color: var(--color-white);
-  background: var(--color-ocean-dark);
-  overflow-x: hidden;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base); /* Uses fluid scale */
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-ocean);
+  background: var(--color-white);
+  min-height: 100vh;
 }
 
+/* 3. Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   letter-spacing: -0.02em;
 }
 
-h1 { font-size: var(--font-size-3xl); }
-h2 { font-size: var(--font-size-2xl); }
-h3 { font-size: var(--font-size-xl); }
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
 
 p {
   margin-bottom: var(--space-md);
+  font-size: var(--font-size-base); /* Uses fluid scale */
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 a {
   color: var(--color-azure);
   text-decoration: none;
-  transition: opacity 0.3s ease;
 }
 
-a:hover {
-  opacity: 0.8;
-}
-
-/* Utility Classes */
+/* 4. Layout Utilities */
 .container {
-  max-width: var(--content-max);
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: 0 clamp(1rem, 4vw, 3rem);
 }
 
 .section {
   padding: var(--space-3xl) 0;
 }
 
-.text-center {
-  text-align: center;
+/* 5. Component Styles */
+
+/* Text line for hero (created by JS) */
+.text-line {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 7px;
+  display: inline-block;
+  margin-bottom: clamp(0.5rem, 2vw, 1rem);
 }
 
-/* Responsive */
+/* Main content wrapper */
+.main-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* 6. Single Media Query for Critical Breakpoint */
 @media (max-width: 768px) {
+  :root {
+    --space-3xl: 3rem;
+    --space-2xl: 2rem;
+  }
+  
   .section {
     padding: var(--space-2xl) 0;
   }
+  
+  .text-line {
+    margin-bottom: 0.5rem;
+  }
 }
 
+/* 7. Performance Optimizations */
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .section {
+    padding: 1rem;
+  }
+  
+  body {
+    color: black;
+    background: white;
+  }
+}

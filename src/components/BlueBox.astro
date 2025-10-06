@@ -1,0 +1,75 @@
+---
+// Reusable Blue Box Component
+export interface Props {
+  heading: string;
+  maxWidth?: string;
+}
+
+const { heading, maxWidth = '40%' } = Astro.props;
+---
+
+<section class="intro-section">
+  <div class="container">
+    <div class="blue-box" style={`max-width: ${maxWidth}`}>
+      <h2>{heading}</h2>
+      <div class="box-content">
+        <slot /> <!-- Content passed from parent -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro-section {
+    position: relative;
+    padding: clamp(3rem, 6vw, 6rem) 0;
+    margin-top: -150px; /* Pulls box 50px up into hero section */
+    z-index: 2; /* Ensures it appears above hero background */
+  }
+
+  .intro-content {
+    width: 100%;
+    max-width: var(--container-max, 1400px);
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 7.3vw, 140px);
+  }
+
+  .blue-box {
+    background: linear-gradient(
+      to bottom,
+      rgba(79, 195, 247, 0.85) 0%,
+      rgba(255, 235, 59, 0.85) 100%
+    );
+    backdrop-filter: blur(10px);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: 15px;
+  }
+
+  .blue-box h2 {
+    font-size: var(--font-size-2xl); /* Uses fluid scale from global.css */
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+    color: var(--color-ocean);
+  }
+
+  /* Updated to match fluid body copy specs */
+  .box-content :global(p) {
+    font-size: var(--font-size-base); /* Uses fluid scale from global.css */
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+    color: var(--color-ocean);
+  }
+
+  .box-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    /* Full width on mobile */
+    .blue-box {
+      max-width: 100% !important;
+    }
+  }
+</style>

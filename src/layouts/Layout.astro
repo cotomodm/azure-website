@@ -1,4 +1,5 @@
 ---
+// Simplified Layout - imports global styles and script once
 export interface Props {
   title: string;
   description?: string;
@@ -18,174 +19,22 @@ const {
   <meta name="description" content={description}>
   <meta name="theme-color" content="#0B0D10">
   
-  <!-- Open Graph -->
   <meta property="og:title" content={`${title} | Azure Ventures`}>
   <meta property="og:description" content={description}>
   <meta property="og:type" content="website">
   
   <title>{title} | Azure Ventures</title>
   
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
+  
+  <!-- Single global stylesheet -->
+  <link rel="stylesheet" href="/src/styles/global.css">
 </head>
 <body>
   <slot />
   
-  <!-- Global scripts at the end of body -->
-  <script>
-    // Global function to initialize hero text splitting
-    window.initializeHeroText = function(elementId) {
-      const heroText = elementId ? document.getElementById(elementId) : document.querySelector('[data-text]');
-      if (!heroText) return;
-      
-      function splitTextIntoLines() {
-        const originalText = heroText.dataset.text;
-        if (!originalText) return;
-        
-        // Clear the content first
-        heroText.innerHTML = originalText;
-        
-        // Get computed styles
-        const computedStyle = window.getComputedStyle(heroText);
-        const fontSize = computedStyle.fontSize;
-        const fontFamily = computedStyle.fontFamily;
-        const fontWeight = computedStyle.fontWeight;
-        const containerWidth = heroText.offsetWidth;
-        
-        // Create canvas for accurate text measurement
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        context.font = `${fontWeight} ${fontSize} ${fontFamily}`;
-        
-        // Split into words
-        const words = originalText.split(' ');
-        const lines = [];
-        let currentLine = '';
-        
-        for (let i = 0; i < words.length; i++) {
-          const testLine = currentLine ? currentLine + ' ' + words[i] : words[i];
-          const testWidth = context.measureText(testLine).width;
-          
-          if (testWidth > containerWidth && currentLine) {
-            lines.push(currentLine);
-            currentLine = words[i];
-          } else {
-            currentLine = testLine;
-          }
-        }
-        
-        if (currentLine) {
-          lines.push(currentLine);
-        }
-        
-        // Create the HTML
-        const html = lines.map(line => 
-          `<span class="text-line">${line}</span>`
-        ).join('<br>');
-        
-        heroText.innerHTML = html;
-      }
-      
-      // Run immediately
-      splitTextIntoLines();
-      
-      // Set up resize listener for this specific element
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(splitTextIntoLines, 250);
-      });
-    }
-    
-    // Auto-initialize any hero text on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      const heroElements = document.querySelectorAll('[data-text]');
-      heroElements.forEach(element => {
-        window.initializeHeroText(element.id);
-      });
-    });
-  </script>
+  <!-- Single script import at end of body -->
+  <script src="/src/scripts/hero-text.js" type="module"></script>
 </body>
 </html>
-
-<style is:global>
-  /* Global Reset and Base Styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  :root {
-    /* Colors */
-    --color-ocean: #0B0D10;
-    --color-azure: #00a8e8;
-    --color-azure-light: #4fc3f7;
-    --color-white: #ffffff;
-    --color-gray-100: #f8f9fa;
-    --color-gray-600: #4a5568;
-    
-    /* Typography */
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    
-    /* Spacing */
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 1.5rem;
-    --space-lg: 2rem;
-    --space-xl: 3rem;
-    --space-2xl: 4rem;
-    --space-3xl: 6rem;
-    
-    /* Layout */
-    --container-max: 1400px;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: var(--font-family);
-    line-height: 1.6;
-    color: var(--color-ocean);
-    background: var(--color-white);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1;
-  }
-
-  /* Global style for text-line created by JavaScript */
-  .text-line {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 7px;
-    display: inline-block;
-    margin-bottom: clamp(0.5rem, 2vw, 1rem);
-  }
-
-  /* Utility Classes */
-  .container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 3rem;
-  }
-
-  .section {
-    padding: var(--space-3xl) 0;
-  }
-
-  @media (max-width: 768px) {
-    .container {
-      padding: 0 1.5rem;
-    }
-
-    .section {
-      padding: var(--space-2xl) 0;
-    }
-  }
-</style>
