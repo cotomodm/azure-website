@@ -1,5 +1,7 @@
 ---
 // Simplified Layout - imports global styles and script once
+import '../styles/global.css';
+
 export interface Props {
   title: string;
   description?: string;
@@ -28,13 +30,17 @@ const {
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
   
-  <!-- Single global stylesheet -->
-  <link rel="stylesheet" href="/src/styles/global.css">
+  <!-- Preconnect to Google Fonts for better performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts - Noto Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <slot />
   
   <!-- Single script import at end of body -->
-  <script src="/src/scripts/hero-text.js" type="module"></script>
+  <script src="../scripts/hero-text.js"></script>
 </body>
 </html>
