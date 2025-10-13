@@ -5,16 +5,14 @@ export interface Props {
   maxWidth?: string;
 }
 
-const { heading, maxWidth = '40%' } = Astro.props;
+const { heading, maxWidth = '600px' } = Astro.props;
 ---
 
 <section class="intro-section">
-  <div class="container">
-    <div class="blue-box" style={`max-width: ${maxWidth}`}>
-      <h2>{heading}</h2>
-      <div class="box-content">
-        <slot /> <!-- Content passed from parent -->
-      </div>
+  <div class="blue-box" style={`max-width: ${maxWidth}`}>
+    <h2>{heading}</h2>
+    <div class="box-content">
+      <slot /> <!-- Content passed from parent -->
     </div>
   </div>
 </section>
@@ -22,23 +20,19 @@ const { heading, maxWidth = '40%' } = Astro.props;
 <style>
   .intro-section {
     position: relative;
-    padding: clamp(3rem, 6vw, 6rem) 0;
+    padding: clamp(3rem, 6vw, 6rem) 100px;
     margin-top: -150px; /* Pulls box 50px up into hero section */
     z-index: 2; /* Ensures it appears above hero background */
-  }
-
-  .intro-content {
-    width: 100%;
     max-width: var(--container-max, 1400px);
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 7.3vw, 140px);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .blue-box {
     background: linear-gradient(
       to bottom,
-      rgba(79, 195, 247, 0.85) 0%,
-      rgba(255, 235, 59, 0.85) 100%
+      var(--color-azure-light) 0%,
+      var(--color-yellow) 100%
     );
     backdrop-filter: blur(10px);
     padding: clamp(1.5rem, 4vw, 3rem);
@@ -67,6 +61,11 @@ const { heading, maxWidth = '40%' } = Astro.props;
   }
 
   @media (max-width: 768px) {
+    .intro-section {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
     /* Full width on mobile */
     .blue-box {
       max-width: 100% !important;

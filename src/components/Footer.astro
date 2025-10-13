@@ -4,30 +4,27 @@
 
 <footer class="footer">
   <div class="footer-container">
-    <div class="footer-left">
-      <div class="footer-logo">
-       <img src="/images/logos/azure_logo_grey.svg" alt="Azure Ventures logo" loading="lazy">
-      </div>
-      
-      <div class="footer-nav">
+    <div class="footer-logo">
+      <img src="/images/logos/azure_logo_grey.svg" alt="Azure Ventures logo" loading="lazy">
+    </div>
+    
+    <div class="footer-content">
+      <nav class="footer-nav">
         <a href="/">VENTURES</a>
         <a href="/what-we-do">WHAT WE DO</a>
         <a href="/about">ABOUT US</a>
-        <a href="/contact">CONTACT US</a>
-      </div>
-    </div>
-    
-    <div class="footer-right">
-      <div class="footer-column">
+      </nav>
+      
+      <div class="footer-center">
         <h4>CONTACT</h4>
-        <p><a href="mailto:contact@azure-vc.co">contact@azure-vc.co</a></p>
-        <p><a href="mailto:hello@yachtingventures.co">hello@yachtingventures.co</a></p>
+        <a href="mailto:contact@azure-vc.co">contact@azure-vc.co</a>
+        <a href="mailto:hello@yachtingventures.co">hello@yachtingventures.co</a>
       </div>
       
-      <div class="footer-column">
+      <div class="footer-right">
         <h4>CONNECT</h4>
-        <a href="https://www.linkedin.com/company/azure-ventures" class="linkedin-icon" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <a href="https://www.linkedin.com/company/azure-ventures" class="linkedin-link" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
         </a>
@@ -35,8 +32,8 @@
     </div>
     
     <div class="footer-bottom">
-      <p>© {new Date().getFullYear()} Azure Ventures. All rights reserved.</p>
-      <p>Designed by Kite</p>
+      <p>Copyright @ Azure Ventures. All rights reserved.</p>
+      <p>Designed by Kite Brand Agency</p>
     </div>
   </div>
 </footer>
@@ -44,121 +41,180 @@
 <style>
   .footer {
     background: var(--color-gray-medium);
-    padding: 4rem 0 2rem;
+    padding: var(--space-3xl) 0 var(--space-xl);
     position: relative;
     z-index: 2;
     margin-top: auto;
-    color: var(--color-gray-light);
   }
 
   .footer-container {
-    max-width: 1400px;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 3rem;
+    padding: 0 clamp(1rem, 4vw, 3rem);
   }
 
-  .footer-left {
-    display: flex;
-    gap: 4rem;
-    margin-bottom: 3rem;
-  }
-
+  /* Logo in its own row */
   .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    margin-bottom: var(--space-lg);
   }
 
   .footer-logo img {
-    height: 40px;
+    height: clamp(32px, 4vw, 44px);
     width: auto;
+    opacity: 0.7;
+    display: block;
   }
 
+  /* 3 columns below logo - 60/20/20 split */
+  .footer-content {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Column 1 - Navigation links (60%) */
   .footer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: block;
   }
 
   .footer-nav a {
     color: var(--color-gray-light);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    font-weight: 400;
     letter-spacing: 0.05em;
     transition: color 0.3s ease;
+    display: block;
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
   }
 
   .footer-nav a:hover {
-    color: white;
+    color: var(--color-white);
   }
 
-  .footer-right {
-    display: flex;
-    gap: 4rem;
-    margin-bottom: 3rem;
+  /* Column 2 - Contact (20%) */
+  .footer-center {
+    display: block;
   }
 
-  .footer-column h4 {
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-    opacity: 0.6;
-  }
-
-  .footer-column p {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-column a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .footer-column a:hover {
-    color: white;
-  }
-
-  .linkedin-icon {
+  .footer-center h4 {
     color: var(--color-gray-light);
-    opacity: 1;
-    transition: opacity 0.3s ease;
-    display: inline-block;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.75rem 0;
+    padding: 0 0 0.75rem 0;
+    border-bottom: 2px solid var(--color-gray-light);
+    width: 100%;
   }
 
-  .linkedin-icon:hover {
-    opacity: 1;
+  .footer-center a {
+    color: var(--color-gray-light);
+    text-decoration: none;
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    font-weight: 400;
+    transition: color 0.3s ease;
+    display: block;
+    margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
   }
 
+  .footer-center a:hover {
+    color: var(--color-white);
+  }
+
+  /* Column 3 - Connect (20%) */
+  .footer-right {
+    display: block;
+  }
+
+  .footer-right h4 {
+    color: var(--color-gray-light);
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.75rem 0;
+    padding: 0 0 0.75rem 0;
+    border-bottom: 2px solid var(--color-gray-light);
+    width: 100%;
+  }
+
+  .linkedin-link {
+    color: var(--color-gray-light);
+    transition: color 0.3s ease;
+    display: inline-flex;
+  }
+
+  .linkedin-link:hover {
+    color: var(--color-white);
+  }
+
+  .linkedin-link svg {
+    width: clamp(24px, 3vw, 32px);
+    height: clamp(24px, 3vw, 32px);
+  }
+
+  /* Bottom section */
   .footer-bottom {
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--space-lg);
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    font-size: 0.8rem;
-    opacity: 0.6;
+    align-items: center;
+    gap: 0;
+    font-size: clamp(0.7rem, 1.4vw, 0.8rem);
   }
 
+  .footer-bottom p {
+    color: var(--color-gray-light);
+    opacity: 0.5;
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer-bottom p:first-child::after {
+    content: '.';
+    margin: 0 0.25rem;
+  }
+
+  /* Mobile styles */
   @media (max-width: 768px) {
-    .footer-container {
-      padding: 0 1.5rem;
+    .footer {
+      padding: var(--space-2xl) 0 var(--space-lg);
     }
 
-    .footer-left,
-    .footer-right {
-      flex-direction: column;
-      gap: 2rem;
+    .footer-logo {
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .footer-nav a {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-center h4,
+    .footer-right h4 {
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    .footer-center a {
+      margin-bottom: 0.5rem;
     }
 
     .footer-bottom {
       flex-direction: column;
-      text-align: center;
-      gap: 0.5rem;
+      gap: 0.25rem;
+      padding-top: var(--space-md);
+    }
+
+    .footer-bottom p:first-child::after {
+      content: none;
     }
   }
 </style>
