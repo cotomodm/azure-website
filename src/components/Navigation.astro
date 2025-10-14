@@ -39,7 +39,6 @@ const navItems = [
 </nav>
 
 <style>
-/* in <style> */
   .navigation {
     position: fixed;
     top: 0;
@@ -91,26 +90,13 @@ const navItems = [
   .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     text-decoration: none;
     color: #0B0D10;
-    font-weight: 500;
   }
 
-  .logo-mark {
-    font-size: 1.5rem;
-    color: #4fc3f7;
-  }
-
-  .logo-text {
-    line-height: 1;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-  }
-
-  .logo-sub {
-    font-size: 0.7rem;
-    opacity: 0.8;
+  .logo img {
+    max-width: 180px;
+    height: auto;
   }
 
   .nav-links {
@@ -121,7 +107,7 @@ const navItems = [
   .nav-links a {
     color: #0B0D10;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.75rem; /* 15px */
     letter-spacing: 0.05em;
     font-weight: 500;
     transition: opacity 0.3s ease;
@@ -189,4 +175,3 @@ const navItems = [
     onScroll(); // run once in case user lands mid-page
   }
 </script>
-

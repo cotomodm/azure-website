@@ -2,5 +2,5 @@ npm run dev
 
 
 git add .
-git commit -m "pre css update"
+git commit -m "Nic presentation"
 git push

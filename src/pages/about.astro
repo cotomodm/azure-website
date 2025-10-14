@@ -13,19 +13,20 @@ import Footer from '../components/Footer.astro';
     <HeroSection 
       text="Azure Ventures was founded by Gabbi Richardson and Greg Chiappini — entrepreneurs and investors with deep roots in the maritime sector." 
       backgroundImage="/images/hero/maritime_technology_startups.jpg"
-      maxWidth="70%"
+      maxWidth="80%"
     />
     
     <section class="about-content">
       <div class="container">
         <div class="about-grid">
           <div class="bluebox-column">
-            <BlueBox heading="Azure Ventures is a pre-seed and seed-stage venture capital firm backing founders at the very beginning of their journey.">
-              <p>We invest in people before products — in long-term relationships built on belief, conviction, and trust.</p>
-              
-              <p>Our sole focus is the maritime sector. This is our domain — where we bring deep industry knowledge, founder experience, and a global network of experts and operators.</p>
-              
-              <p>We partner with startups set to transform the maritime world — businesses with the potential to shape the future of oceans, trade, climate, and global connectivity.</p>
+<BlueBox heading="Together they have built and backed a portfolio of marine startups spanning climate tech, FinTech, and IoT, with a growing emphasis on ocean sustainability and the future of global trade."><p>Gabbi and Greg first crossed paths at a startup launch party in London. Greg had just exited a career in banking, and Gabbi had recently taken the leap to go full-time with her side project: Yachting Ventures, now the world’s leading growth platform for leisure marine startups.
+<p>A year later, Gabbi pitched Greg the idea of launching a marine innovation fund to support the most promising founders in the sector. The answer was an immediate yes.
+</p>
+<p>That idea became Azure Ventures, a broader thesis that now spans the full maritime sector (excluding blue biotechnology and aquaculture, from coastal infrastructure innovation to marine AI startups. With Gabbi's continued commitment to Yachting Ventures, she stepped into the role of Venture Partner, while Greg took the helm to lead Azure full-time. The two ventures remain closely connected.
+</p>
+<p>Both Gabbi and Greg are qualified UK lawyers who pivoted early from law into startups, each as one of the first employees at now well-known, high-growth companies. Since then, both have gone on to found and fund startups of their own.
+
             </BlueBox>
           </div>
           
@@ -49,13 +50,15 @@ import Footer from '../components/Footer.astro';
 <style>
   .about-content {
     padding: var(--space-3xl) 0;
+    margin-top: -100px;
   }
 
   .about-grid {
     display: grid;
-    grid-template-columns: minmax(400px, 600px) 1fr;
-    gap: clamp(2rem, 4vw, 4rem);
+    grid-template-columns: minmax(80%, 200%) 1fr;
+  
     align-items: start;
+
   }
 
   .bluebox-column {
@@ -64,14 +67,14 @@ import Footer from '../components/Footer.astro';
 
   .images-column {
     display: flex;
-    gap: 66px;
+    gap: 50px;
     align-items: start;
     justify-content: flex-end;
   }
 
   .profile-image {
-    width: 350px;
-    height: 350px;
+    width: 500%;
+    height: 500%;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;

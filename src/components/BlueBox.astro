@@ -5,7 +5,7 @@ export interface Props {
   maxWidth?: string;
 }
 
-const { heading, maxWidth = '600px' } = Astro.props;
+const { heading, maxWidth = '45%' } = Astro.props;
 ---
 
 <section class="intro-section">
@@ -40,17 +40,18 @@ const { heading, maxWidth = '600px' } = Astro.props;
   }
 
   .blue-box h2 {
-    font-size: var(--font-size-2xl); /* Uses fluid scale from global.css */
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.8;
     margin-bottom: clamp(1rem, 3vw, 2rem);
-    color: var(--color-ocean);
+    color: var(--color-teal-dark);
+    text-align: center;
   }
 
   /* Updated to match fluid body copy specs */
   .box-content :global(p) {
-    font-size: var(--font-size-base); /* Uses fluid scale from global.css */
-    line-height: 1.5;
+    font-size: clamp(0.75rem, 3vw, 1rem); /* Uses fluid scale from global.css */
+    line-height: 1.7;
     font-weight: 400;
     margin-bottom: clamp(0.75rem, 2vw, 1rem);
     color: var(--color-ocean);

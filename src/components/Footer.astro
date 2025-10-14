@@ -41,14 +41,15 @@
 <style>
   .footer {
     background: var(--color-gray-medium);
-    padding: var(--space-3xl) 0 var(--space-xl);
+    padding: var(--space-2xl) 0 var(--space-xl);
     position: relative;
     z-index: 2;
     margin-top: auto;
+    
   }
 
   .footer-container {
-    max-width: var(--container-max);
+    width: 100%;
     margin: 0 auto;
     padding: 0 clamp(1rem, 4vw, 3rem);
   }
@@ -61,7 +62,6 @@
   .footer-logo img {
     height: clamp(32px, 4vw, 44px);
     width: auto;
-    opacity: 0.7;
     display: block;
   }
 
@@ -83,8 +83,8 @@
   .footer-nav a {
     color: var(--color-gray-light);
     text-decoration: none;
-    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
-    font-weight: 400;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    font-weight: 500;
     letter-spacing: 0.05em;
     transition: color 0.3s ease;
     display: block;
@@ -102,8 +102,8 @@
 
   .footer-center h4 {
     color: var(--color-gray-light);
-    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
-    font-weight: 400;
+    font-size: clamp(0.5rem, 1.5vw, 1rem);
+    font-weight: 500;
     letter-spacing: 0.05em;
     margin: 0 0 0.75rem 0;
     padding: 0 0 0.75rem 0;
@@ -114,7 +114,7 @@
   .footer-center a {
     color: var(--color-gray-light);
     text-decoration: none;
-    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    font-size: clamp(0.85rem, 1.8vw, 0.9rem);
     font-weight: 400;
     transition: color 0.3s ease;
     display: block;
@@ -132,8 +132,8 @@
 
   .footer-right h4 {
     color: var(--color-gray-light);
-    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
-    font-weight: 400;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    font-weight: 500;
     letter-spacing: 0.05em;
     margin: 0 0 0.75rem 0;
     padding: 0 0 0.75rem 0;
@@ -163,14 +163,14 @@
     justify-content: center;
     align-items: center;
     gap: 0;
-    font-size: clamp(0.7rem, 1.4vw, 0.8rem);
+    font-size: clamp(0.5rem, 1.4vw, 0.7rem);
   }
 
   .footer-bottom p {
     color: var(--color-gray-light);
-    opacity: 0.5;
     margin: 0;
     text-align: center;
+     font-size: clamp(0.5rem, 1.4vw, 0.7rem);
   }
 
   .footer-bottom p:first-child::after {
