@@ -113,14 +113,6 @@ a {
 
 /* 5. Component Styles */
 
-/* Text line for hero (created by JS) */
-.text-line {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 7px 20px 7px 20px;
-  display: inline-block;
-  margin-bottom: clamp(0.5rem, 2vw, 1rem);
-}
-
 /* Main content wrapper */
 .main-content {
   position: relative;
@@ -137,10 +129,6 @@ a {
   
   .section {
     padding: var(--space-2xl) 0;
-  }
-  
-  .text-line {
-    margin-bottom: 0.5rem;
   }
 }
 

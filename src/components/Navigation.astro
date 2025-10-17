@@ -18,7 +18,16 @@ const navItems = [
 <nav class={`navigation ${transparent ? 'navigation--transparent' : ''}`}>
   <div class="nav-container">
     <a href="/" class="logo">
-      <img src="/images/logos/azure_logo_blue.svg"  alt="Azure Ventures logo">
+      <img 
+        src="/images/logos/azure_logo_white.svg" 
+        alt="Azure Ventures logo"
+        class="logo-white"
+      >
+      <img 
+        src="/images/logos/azure_logo_blue.svg" 
+        alt="Azure Ventures logo"
+        class="logo-blue"
+      >
     </a>
     <div class="nav-links">
       {navItems.map(item => (
@@ -92,11 +101,51 @@ const navItems = [
     align-items: center;
     text-decoration: none;
     color: #0B0D10;
+    position: relative;
+    min-width: 232px;
+    min-height: 40px;
   }
 
   .logo img {
-    max-width: 180px;
+    max-width: 232px;
     height: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+  }
+
+  /* Shrink logo by 30% when nav shrinks */
+  .navigation.shrink .logo img {
+    transform: scale(0.7);
+    transform-origin: left center;
+  }
+
+  /* Show blue logo by default (non-transparent nav) */
+  .logo-white {
+    display: none;
+  }
+
+  .logo-blue {
+    display: block;
+  }
+
+  /* Transparent nav: show white logo, hide blue */
+  .navigation--transparent .logo-white {
+    display: block;
+  }
+
+  .navigation--transparent .logo-blue {
+    display: none;
+  }
+
+  /* When scrolled: show blue logo, hide white */
+  .navigation.scrolled .logo-white {
+    display: none;
+  }
+
+  .navigation.scrolled .logo-blue {
+    display: block;
   }
 
   .nav-links {
@@ -107,7 +156,7 @@ const navItems = [
   .nav-links a {
     color: #0B0D10;
     text-decoration: none;
-    font-size: 0.75rem; /* 15px */
+    font-size: 0.9375rem; /* 15px */
     letter-spacing: 0.05em;
     font-weight: 500;
     transition: opacity 0.3s ease;

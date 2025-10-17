@@ -13,30 +13,31 @@ import Footer from '../components/Footer.astro';
     <HeroSection 
       text="Azure Ventures was founded by Gabbi Richardson and Greg Chiappini — entrepreneurs and investors with deep roots in the maritime sector." 
       backgroundImage="/images/hero/maritime_technology_startups.jpg"
-      maxWidth="80%"
+      maxWidth="800px"
     />
     
     <section class="about-content">
-      <div class="container">
+      <div class="about-container">
         <div class="about-grid">
-          <div class="bluebox-column">
-<BlueBox heading="Together they have built and backed a portfolio of marine startups spanning climate tech, FinTech, and IoT, with a growing emphasis on ocean sustainability and the future of global trade."><p>Gabbi and Greg first crossed paths at a startup launch party in London. Greg had just exited a career in banking, and Gabbi had recently taken the leap to go full-time with her side project: Yachting Ventures, now the world’s leading growth platform for leisure marine startups.
-<p>A year later, Gabbi pitched Greg the idea of launching a marine innovation fund to support the most promising founders in the sector. The answer was an immediate yes.
-</p>
-<p>That idea became Azure Ventures, a broader thesis that now spans the full maritime sector (excluding blue biotechnology and aquaculture, from coastal infrastructure innovation to marine AI startups. With Gabbi's continued commitment to Yachting Ventures, she stepped into the role of Venture Partner, while Greg took the helm to lead Azure full-time. The two ventures remain closely connected.
-</p>
-<p>Both Gabbi and Greg are qualified UK lawyers who pivoted early from law into startups, each as one of the first employees at now well-known, high-growth companies. Since then, both have gone on to found and fund startups of their own.
-
+          <div class="bluebox-wrapper">
+            <BlueBox heading="Together they have built and backed a portfolio of marine startups spanning climate tech, FinTech, and IoT, with a growing emphasis on ocean sustainability and the future of global trade.">
+              <p>Gabbi and Greg first crossed paths at a startup launch party in London. Greg had just exited a career in banking, and Gabbi had recently taken the leap to go full-time with her side project: Yachting Ventures, now the world's leading growth platform for leisure marine startups.</p>
+              
+              <p>A year later, Gabbi pitched Greg the idea of launching a marine innovation fund to support the most promising founders in the sector. The answer was an immediate yes.</p>
+              
+              <p>That idea became Azure Ventures, a broader thesis that now spans the full maritime sector (excluding blue biotechnology and aquaculture), from coastal infrastructure innovation to marine AI startups. With Gabbi's continued commitment to Yachting Ventures, she stepped into the role of Venture Partner, while Greg took the helm to lead Azure full-time. The two ventures remain closely connected.</p>
+              
+              <p>Both Gabbi and Greg are qualified UK lawyers who pivoted early from law into startups, each as one of the first employees at now well-known, high-growth companies. Since then, both have gone on to found and fund startups of their own.</p>
             </BlueBox>
           </div>
           
           <div class="images-column">
             <div class="profile-image">
-              <img src="/images/greg_chiappini.png" alt="Greg Chiappini" loading="lazy">
+              <img src="/images/greg_chiappini.jpg" alt="Greg Chiappini" loading="lazy">
             </div>
             
             <div class="profile-image">
-              <img src="/images/gabbi_richardson.png" alt="Gabbi Richardson" loading="lazy">
+              <img src="/images/gabbi_richardson.jpg" alt="Gabbi Richardson" loading="lazy">
             </div>
           </div>
         </div>
@@ -49,32 +50,51 @@ import Footer from '../components/Footer.astro';
 
 <style>
   .about-content {
-    padding: var(--space-3xl) 0;
-    margin-top: -100px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-container {
+    width: 100%;
+    max-width: var(--container-max, 1400px);
+    margin: 0 auto;
+    padding: 0 100px;
+  
   }
 
   .about-grid {
     display: grid;
-    grid-template-columns: minmax(80%, 200%) 1fr;
-  
+    grid-template-columns: minmax(400px, 600px) 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
     align-items: start;
-
   }
 
-  .bluebox-column {
-    /* BlueBox has proper min/max width */
+  .bluebox-wrapper {
+    /* Wrapper to contain BlueBox - no extra padding */
+  }
+
+  /* Override BlueBox default spacing for this page */
+  .bluebox-wrapper :global(.intro-section) {
+    padding: 0;
+    margin-top: 0;
+    max-width: 100%;
+    margin-bottom: 80px;
+  }
+
+  .bluebox-wrapper :global(.blue-box) {
+    max-width: 600px !important; /* Match standard BlueBox width */
   }
 
   .images-column {
     display: flex;
-    gap: 50px;
+    gap: 40px;
     align-items: start;
     justify-content: flex-end;
   }
 
   .profile-image {
-    width: 500%;
-    height: 500%;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -87,8 +107,12 @@ import Footer from '../components/Footer.astro';
     display: block;
   }
 
-  /* Mobile styles */
+  /* Tablet styles */
   @media (max-width: 1024px) {
+    .about-container {
+      padding: 0 3rem;
+    }
+
     .about-grid {
       grid-template-columns: 1fr;
       gap: var(--space-xl);
@@ -105,7 +129,13 @@ import Footer from '../components/Footer.astro';
     }
   }
 
+  /* Mobile styles */
   @media (max-width: 768px) {
+    .about-container {
+      padding: 0 1rem;
+      margin-top: -150px;
+    }
+
     .about-content {
       padding: var(--space-2xl) 0;
     }

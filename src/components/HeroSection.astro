@@ -1,99 +1,105 @@
 ---
-// Consolidated Hero Component with all variations
+// Simplified Hero Component with single text box
 export interface Props {
   text: string;
   backgroundImage?: string;
-  alignment?: 'left' | 'center';
+  alignment?: 'left' | 'center' | 'right';
   maxWidth?: string;
-  overlayOpacity?: number;
 }
 
 const { 
   text, 
   backgroundImage = '/images/ocean-hero.jpg',
   alignment = 'left',
-  maxWidth = '70%',
-  overlayOpacity = 0.3
+  maxWidth = '800px'
 } = Astro.props;
-
-// Generate unique ID for this instance
-const heroId = `hero-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<div class="hero-background" 
-     style={`background-image: url('${backgroundImage}')`}
-     data-overlay={overlayOpacity}>
-</div>
+<div class="hero-background" style={`background-image: url(${backgroundImage})`}></div>
 
 <section class="hero-section" data-align={alignment}>
-  <div class="hero-content">
-    <h1 id={heroId} 
-        data-text={text} 
-        style={`max-width: ${maxWidth}`}>
-      {text}
-    </h1>
+  <div class="hero-container">
+    <div class="hero-text-box" style={`max-width: ${maxWidth}`}>
+      <h1>{text}</h1>
+    </div>
   </div>
 </section>
 
-<style>
+<style is:global>
   .hero-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-position: center center;
-    background-repeat: no-repeat;
     background-size: cover;
-    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
   }
+</style>
 
-  .hero-background::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(11, 13, 16, var(--overlay, 0.1)) 0%,
-      rgba(11, 13, 16, calc(var(--overlay, 0.05) * 1.2)) 100%
-    );
-  }
-
+<style>
   .hero-section {
-    min-height: 100vh;
+    min-height: 75vh; /* Reduced from 100vh so BlueBox is visible on load */
+    width: 100%;
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
     z-index: 1;
+    padding-top: 80px; /* Account for fixed nav */
   }
 
-  .hero-section[data-align="left"] {
-    justify-content: flex-start;
-  }
-
-  .hero-section[data-align="center"] {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .hero-content {
+  .hero-container {
     width: 100%;
     max-width: var(--container-max, 1400px);
     margin: 0 auto;
-    padding: clamp(4rem, 8vw, 6rem) 100px clamp(2rem, 4vw, 3rem);
+    padding: clamp(2rem, 4vw, 3rem) 100px clamp(2rem, 4vw, 3rem);
+    display: flex;
   }
 
-  .hero-content h1 {
-    font-size: clamp(1.2rem, 3vw, 2.3rem);
+  /* Alignment options */
+  .hero-section[data-align="left"] .hero-container {
+    justify-content: flex-start;
+  }
+
+  .hero-section[data-align="center"] .hero-container {
+    justify-content: center;
+  }
+
+  .hero-section[data-align="right"] .hero-container {
+    justify-content: flex-end;
+  }
+
+  .hero-text-box {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: clamp(1rem, 4vw, 1rem);
+    width: 100%;
+  }
+
+  .hero-text-box h1 {
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.3;
     color: white;
+    margin: 0;
   }
 
+  /* Mobile styles */
   @media (max-width: 768px) {
-    .hero-content {
+    .hero-section {
+      min-height: 50vh;
+    }
+
+    .hero-container {
       padding-left: 1rem;
       padding-right: 1rem;
+    }
+
+    .hero-text-box {
+      max-width: 100% !important;
     }
   }
 </style>
