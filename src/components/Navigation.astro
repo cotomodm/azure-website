@@ -132,6 +132,9 @@ const navItems = [
   .navigation.shrink .logo img {
     transform: scale(0.7);
     transform-origin: left center;
+    margin-top: -6px!important;
+    }
+
   }
 
   /* Show blue logo by default (non-transparent nav) */
@@ -203,7 +206,7 @@ const navItems = [
   .mobile-menu span {
     display: block;
     width: 24px;
-    height: 2px;
+    height: 4px;
     background: currentColor;
     transition: all 0.3s ease;
   }
@@ -228,7 +231,7 @@ const navItems = [
     top: 80px; /* Below nav bar */
     left: 0;
     right: 0;
-    background: white;
+    background: var(--color-brown);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     flex-direction: column;
     padding: 1rem 0;
@@ -240,21 +243,47 @@ const navItems = [
   }
 
   .mobile-nav-links a {
-    color: #0B0D10;
+    color: var(--color-azure-light);
     text-decoration: none;
     font-size: 1rem;
     letter-spacing: 0.05em;
     font-weight: 500;
     padding: 1rem 1.5rem;
+    text-align: right;
     transition: background-color 0.3s ease;
   }
 
   .mobile-nav-links a:hover,
   .mobile-nav-links a.active {
-    background-color: rgba(79, 195, 247, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   @media (max-width: 768px) {
+    /* Mobile nav is always white and at reduced size */
+    .navigation {
+      background: white !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+      padding: 1rem 0 !important; /* Always at shrunk size */
+    }
+
+    /* Mobile always shows blue logo */
+    .navigation .logo-white {
+      display: none !important;
+    }
+
+    .navigation .logo-blue {
+      display: block !important;
+      transform: scale(0.7) !important; /* Always at 70% size */
+      transform-origin: left center;
+      margin-top: -6px!important;
+    }
+
+    /* Mobile text links always dark */
+    .navigation .nav-links a,
+    .navigation .mobile-menu {
+      color: var(--color-azure) !important;
+    }
+
     .nav-links {
       display: none;
     }
@@ -265,6 +294,11 @@ const navItems = [
 
     .nav-container {
       padding: 0 1.5rem;
+    }
+
+    /* Adjust mobile dropdown position for smaller nav */
+    .mobile-nav-links {
+      top: 72px; /* Adjusted for reduced nav height */
     }
   }
 </style>
