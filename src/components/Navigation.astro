@@ -75,7 +75,7 @@ const navItems = [
 
   /* Transparent variant for hero pages */
   .navigation--transparent {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.5);
     box-shadow: none;
   }
 
@@ -95,10 +95,7 @@ const navItems = [
     color: #0B0D10;
   }
 
-  /* Shrink state */
-  .navigation.shrink {
-    padding: 1rem 0; /* ~30% less than 1.5rem */
-  }
+
 
   .nav-container {
     max-width: 100%;
@@ -115,12 +112,13 @@ const navItems = [
     text-decoration: none;
     color: #0B0D10;
     position: relative;
-    min-width: 232px;
+    min-width: 178px;
     min-height: 40px;
+    margin-top: -3px;
   }
 
   .logo img {
-    max-width: 232px;
+    max-width: 178px;
     height: auto;
     position: absolute;
     top: 0;
@@ -128,12 +126,6 @@ const navItems = [
     transition: transform 0.3s ease;
   }
 
-  /* Shrink logo by 30% when nav shrinks */
-  .navigation.shrink .logo img {
-    transform: scale(0.7);
-    transform-origin: left center;
-    margin-top: -6px!important;
-    }
 
   }
 
