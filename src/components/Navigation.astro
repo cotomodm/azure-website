@@ -7,12 +7,23 @@ export interface Props {
 const { transparent = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 
+// Normalize path by removing trailing slash (except for root)
+const normalizedPath = currentPath === '/' ? '/' : currentPath.replace(/\/$/, '');
+
 const navItems = [
   { href: '/', label: 'VENTURES' },
   { href: '/what-we-do', label: 'WHAT WE DO' },
   { href: '/about', label: 'ABOUT US' },
   { href: '/contact', label: 'CONTACT US' },
 ];
+
+// Helper function to check if a nav item is active
+const isActive = (href: string) => {
+  if (href === '/') {
+    return normalizedPath === '/';
+  }
+  return normalizedPath === href || normalizedPath === href + '/';
+};
 ---
 
 <nav class={`navigation ${transparent ? 'navigation--transparent' : ''}`}>
@@ -33,7 +44,7 @@ const navItems = [
       {navItems.map(item => (
         <a 
           href={item.href}
-          class={currentPath === item.href ? 'active' : ''}
+          class={isActive(item.href) ? 'active' : ''}
         >
           {item.label}
         </a>
@@ -45,7 +56,7 @@ const navItems = [
       {navItems.map(item => (
         <a 
           href={item.href}
-          class={currentPath === item.href ? 'active' : ''}
+          class={isActive(item.href) ? 'active' : ''}
         >
           {item.label}
         </a>
