@@ -32,7 +32,7 @@
     </div>
     
     <div class="footer-bottom">
-      <p>Copyright @ Azure Ventures. All rights reserved. Designed by <a href="https://kitectn.com/" target="_blank" rel="noopener noreferrer">Kite Brand Agency</a></p>
+      <p>Copyright @ Azure Ventures. All rights reserved. Designed by <a href="https://kitectn.com/" target="_blank" rel="noopener noreferrer"><span style="color:var(--color-gray-lighter);">Kite Brand Agency</span></a>.</p>
     </div>
   </div>
 </footer>
@@ -101,7 +101,7 @@
 
   .footer-center h4 {
     color: var(--color-gray-lighter);
-    font-size: clamp(0.5rem, 1.5vw, 1rem);
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
     font-weight: 500;
     letter-spacing: 0.05em;
     margin: 0 0 0.75rem 0;
@@ -172,11 +172,6 @@
      font-size: clamp(0.5rem, 1.4vw, 0.7rem);
   }
 
-  .footer-bottom p:first-child::after {
-    content: '.';
-    margin: 0 0.25rem;
-  }
-
   /* Mobile styles */
   @media (max-width: 768px) {
     .footer {
@@ -210,10 +205,6 @@
       flex-direction: column;
       gap: 0.25rem;
       padding-top: var(--space-md);
-    }
-
-    .footer-bottom p:first-child::after {
-      content: none;
     }
   }
 </style>
