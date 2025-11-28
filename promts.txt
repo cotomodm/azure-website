@@ -2,5 +2,19 @@ npm run dev
 
 
 git add .
-git commit -m "Change Reqests 23 Oct"
+git commit -m "Change Reqests 27 nov 2025"
+git push
+
+
+
+# Set your Git email (use your actual email)
+git config --global user.email "andrew@cotmoo.com"
+
+# Set your Git name (use your actual name)
+git config --global user.name "Andrew"
+
+# Now try committing again
+git commit -m "Change Requests 27 nov 2025"
+
+# Then push
 git push
